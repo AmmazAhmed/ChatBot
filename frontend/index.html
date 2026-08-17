@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inquisitors Society Assistant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- MAIN LANDING PAGE -->
+    <div id="app">
+        <div class="landing-container">
+            <img src="inquisitors-logo.png" alt="Inquisitors Logo" class="main-logo">
+            <h1>Welcome to the Inquisitors Society</h1>
+            <p>Your intelligent assistant is here to help. Click the chat icon below.</p>
+        </div>
+
+        <!-- CHAT TOGGLE BUTTON -->
+        <button id="chatToggle" class="chat-toggle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span>Chat</span>
+        </button>
+    </div>
+
+    <!-- CHAT WINDOW -->
+    <div id="chatWindow" class="chat-window hidden">
+        <div class="chat-header">
+            <div class="header-info">
+                <img src="inquisitors-logo.png" alt="Logo" class="header-logo">
+                <div>
+                    <h3>Inquisitors Assistant</h3>
+                    <span class="online-status">● Online</span>
+                </div>
+            </div>
+            <div class="header-controls">
+                <button id="clearChat" class="icon-btn" title="Clear Chat">🗑️</button>
+                <button id="closeChat" class="icon-btn" title="Close">✕</button>
+            </div>
+        </div>
+        
+        <div class="chat-body" id="chatBody">
+            <!-- Initial Bot Message with Clickable Buttons -->
+            <div class="message bot-msg">
+                👋 Hello! I'm the Inquisitors Society Assistant.<br>
+                I can help you with:<br><br>
+                <button class="quick-btn" onclick="sendQuickMessage('Courses & Certificates')">📚 Courses & Certificates</button><br>
+                <button class="quick-btn" onclick="sendQuickMessage('Internships')">🎯 Internships</button><br>
+                <button class="quick-btn" onclick="sendQuickMessage('Events & Workshops')">🏛️ Events & Workshops</button><br>
+                <button class="quick-btn" onclick="sendQuickMessage('Career Development')">💼 Career Development</button><br>
+                <button class="quick-btn" onclick="sendQuickMessage('Community Forums')">👥 Community Forums</button><br>
+                <button class="quick-btn" onclick="sendQuickMessage('Account & Registration')">🔒 Account & Registration</button><br><br>
+                What would you like to know?
+            </div>
+        </div>
+
+        <div class="chat-footer">
+            <input type="text" id="userInput" placeholder="Type a message..." />
+            <button id="sendBtn">Send</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
