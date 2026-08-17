@@ -1,0 +1,247 @@
+{
+  "faqs": [
+    {
+      "id": "FAQ001",
+      "category": "registration",
+      "keywords": ["register", "sign up", "account", "create", "membership"],
+      "question": "How do I create an account on Inquisitors Society platform?",
+      "answer": "To create an account:\n1. Go to the Sign Up page\n2. Enter your Full Name, Email, and Phone Number\n3. Select your role (Student, Teacher, Mentor, or Company)\n4. For students: Enter your University, Department, and Year of Study\n5. Create a strong password\n6. Click 'Register'\n7. Verify your email by clicking the link sent to your inbox\n8. Complete your profile with additional details",
+      "links": ["/register", "/profile"],
+      "followup": ["How do I verify my email?", "What documents do I need?"]
+    },
+    {
+      "id": "FAQ002",
+      "category": "authentication",
+      "keywords": ["login", "sign in", "password", "forgot"],
+      "question": "How do I log in to my account?",
+      "answer": "To log in:\n1. Go to the Login page\n2. Enter your registered email address\n3. Enter your password\n4. Click 'Login'\n5. You can also use Google or GitHub OAuth for quick login\n6. Check 'Remember Me' to stay logged in\n7. If you forgot your password, click 'Forgot Password'",
+      "links": ["/login"],
+      "followup": ["How do I reset my password?", "Can I use Google to login?"]
+    },
+    {
+      "id": "FAQ003",
+      "category": "authentication",
+      "keywords": ["password", "reset", "forgot", "recover"],
+      "question": "How do I reset my password?",
+      "answer": "To reset your password:\n1. Go to the Login page\n2. Click 'Forgot Password'\n3. Enter your registered email address\n4. You'll receive an OTP (One-Time Password) in your email\n5. Enter the OTP in the verification field\n6. Create a new password\n7. Confirm your new password\n8. Click 'Reset Password'\n9. You can now log in with your new password",
+      "links": ["/forgot-password"],
+      "followup": ["I didn't receive the OTP email", "What if I don't have access to my email?"]
+    },
+    {
+      "id": "FAQ004",
+      "category": "profile",
+      "keywords": ["profile", "update", "edit", "photo", "avatar"],
+      "question": "How do I update my profile?",
+      "answer": "To update your profile:\n1. Log in to your account\n2. Click on your avatar in the top right corner\n3. Select 'Profile' from the dropdown menu\n4. Click 'Edit Profile'\n5. Update your information (Bio, Skills, Interests, Social Links)\n6. Upload a new profile picture (JPEG/PNG, max 1MB)\n7. For students: Update academic information\n8. For companies: Update company details\n9. Click 'Save Changes'\n10. Your profile will be updated immediately",
+      "links": ["/profile"],
+      "followup": ["How do I upload my CV?", "How do I add my skills?"]
+    },
+    {
+      "id": "FAQ005",
+      "category": "courses",
+      "keywords": ["course", "enroll", "sign up", "join", "learning"],
+      "question": "How do I enroll in a course?",
+      "answer": "To enroll in a course:\n1. Log in to your student account\n2. Go to the 'Courses' section\n3. Browse the course catalog\n4. Use filters to find courses by category, level, or instructor\n5. Click on a course to view details\n6. Review the course description, learning objectives, and prerequisites\n7. Click the 'Enroll' button\n8. If the course is free: Enrollment is instant\n9. If the course is paid: Complete the payment process\n10. The course will appear in your dashboard\n11. You can now start learning!",
+      "links": ["/courses", "/dashboard"],
+      "followup": ["What courses are free?", "How do I track my progress?"]
+    },
+    {
+      "id": "FAQ006",
+      "category": "courses",
+      "keywords": ["progress", "track", "complete", "percentage"],
+      "question": "How do I track my course progress?",
+      "answer": "To track your course progress:\n1. Go to your Dashboard\n2. Look for 'My Courses' section\n3. Each course shows a progress bar with percentage\n4. Click on a course to see detailed progress\n5. The system automatically tracks:\n   - Completed lessons\n   - Quiz scores\n   - Assignment submissions\n   - Overall completion percentage\n6. You'll see estimated time remaining to complete\n7. Certificates are awarded upon 100% completion\n8. Check your dashboard regularly for updates",
+      "links": ["/dashboard"],
+      "followup": ["How do I get a certificate?", "What if I'm stuck on a lesson?"]
+    },
+    {
+      "id": "FAQ007",
+      "category": "certificates",
+      "keywords": ["certificate", "completion", "verify", "download", "QR"],
+      "question": "How do I get a course completion certificate?",
+      "answer": "To get your certificate:\n1. Complete all lessons in the course\n2. Pass all quizzes with minimum 60% score\n3. Submit all assignments\n4. Maintain 80% attendance\n5. Once all requirements are met, certificate is auto-generated\n6. Go to your Dashboard > Certificates\n7. Click 'Download' to get PDF version\n8. Each certificate has a unique QR code for verification\n9. Share your certificate on LinkedIn or social media\n10. Employers can verify certificates using the QR code",
+      "links": ["/certificates", "/dashboard"],
+      "followup": ["How do I verify a certificate?", "What if I lose my certificate?"]
+    },
+    {
+      "id": "FAQ008",
+      "category": "certificates",
+      "keywords": ["verify", "validation", "QR", "authentic"],
+      "question": "How do I verify a certificate?",
+      "answer": "To verify a certificate:\n1. Locate the QR code on the certificate\n2. Scan the QR code using any QR scanner app\n3. Or visit our certificate verification page\n4. Enter the unique verification code from the certificate\n5. The system will show:\n   - Student name\n   - Course/Event/Internship name\n   - Issue date\n   - Expiry date (if applicable)\n   - Status (Active/Revoked/Expired)\n6. The certificate is verified if all details match\n7. Forged certificates will fail verification\n8. Contact support if you have issues",
+      "links": ["/verify-certificate"],
+      "followup": ["My certificate isn't verifying", "What if the QR code is damaged?"]
+    },
+    {
+      "id": "FAQ009",
+      "category": "internships",
+      "keywords": ["internship", "apply", "application", "opportunity"],
+      "question": "How do I apply for an internship?",
+      "answer": "To apply for an internship:\n1. Log in to your student account\n2. Go to the 'Internships' section\n3. Browse available internships\n4. Use filters by industry, duration, or stipend\n5. Click on an internship to view details\n6. Review requirements and responsibilities\n7. Click 'Apply Now'\n8. Upload your CV (required)\n9. Optionally add a cover letter\n10. Link your GitHub, LinkedIn, or Portfolio\n11. Submit your application\n12. Track application status in your dashboard",
+      "links": ["/internships", "/dashboard"],
+      "followup": ["How do I check my application status?", "Can I apply to multiple internships?"]
+    },
+    {
+      "id": "FAQ010",
+      "category": "internships",
+      "keywords": ["company", "post", "internship", "hire"],
+      "question": "How do I post an internship as a company?",
+      "answer": "To post an internship:\n1. Register as a company on the platform\n2. Complete your company profile\n3. Go to your Company Dashboard\n4. Click 'Post New Internship'\n5. Enter internship details:\n   - Title and Description\n   - Requirements and Skills\n   - Duration (4 weeks to 6 months)\n   - Stipend (Paid/Unpaid/Academic Credit)\n   - Location and Number of Positions\n   - Application Deadline\n6. Review and submit for approval\n7. Admin will review and approve within 48 hours\n8. Once approved, internship is visible to students\n9. Manage applications from your dashboard",
+      "links": ["/company/dashboard", "/internships/create"],
+      "followup": ["How long does approval take?", "What if I need to edit my posting?"]
+    },
+    {
+      "id": "FAQ011",
+      "category": "events",
+      "keywords": ["event", "register", "seminar", "workshop", "hackathon"],
+      "question": "How do I register for an event?",
+      "answer": "To register for an event:\n1. Log in to your account\n2. Go to the 'Events' section\n3. Browse upcoming events\n4. Filter by type (Seminar, Workshop, Hackathon, etc.)\n5. Click on an event to view details\n6. Review date, time, venue, and capacity\n7. Click 'Register Now'\n8. If paid: Complete payment via Credit Card, JazzCash, or EasyPaisa\n9. If free: Registration is instant\n10. You'll receive a confirmation email\n11. Get your QR code ticket\n12. Show QR code at the event for entry",
+      "links": ["/events", "/tickets"],
+      "followup": ["What payment methods are accepted?", "Can I cancel my registration?"]
+    },
+    {
+      "id": "FAQ012",
+      "category": "events",
+      "keywords": ["QR", "ticket", "attendance", "check-in"],
+      "question": "How does QR code ticketing work?",
+      "answer": "QR code ticketing works as follows:\n1. After registration, you receive a unique QR code\n2. QR code is available in your tickets section\n3. You can view/download the QR code ticket\n4. At the event, organizers scan your QR code\n5. System instantly verifies your registration\n6. Your attendance is automatically marked\n7. QR codes are unique and cannot be shared\n8. Each QR code is valid for single entry only\n9. Prevents duplicate scanning\n10. Real-time attendance tracking for organizers",
+      "links": ["/tickets"],
+      "followup": ["What if I lose my QR code?", "Can I get a replacement?"]
+    },
+    {
+      "id": "FAQ013",
+      "category": "events",
+      "keywords": ["volunteer", "help", "organize", "assist"],
+      "question": "How do I volunteer for events?",
+      "answer": "To volunteer for events:\n1. Go to the 'Events' section\n2. Look for events with 'Volunteers Needed' tag\n3. Click on the event\n4. Select 'Register as Volunteer'\n5. Choose your preferred role (Registration, Logistics, etc.)\n6. Select your availability/shift\n7. Submit your volunteer application\n8. Event organizer will review and confirm\n9. You'll receive a volunteer confirmation\n10. Complete volunteer training before event\n11. Track your volunteer hours\n12. Receive volunteer certificate upon completion",
+      "links": ["/events", "/volunteer"],
+      "followup": ["Do volunteers get certificates?", "What are volunteer responsibilities?"]
+    },
+    {
+      "id": "FAQ014",
+      "category": "career",
+      "keywords": ["portfolio", "showcase", "projects", "achievements"],
+      "question": "How do I create my portfolio?",
+      "answer": "To create your portfolio:\n1. Log in to your student account\n2. Go to 'Career' > 'Portfolio'\n3. Click 'Create Portfolio'\n4. Add sections:\n   - About Me: Bio and introduction\n   - Education: Degrees and certifications\n   - Experience: Internships and jobs\n   - Projects: Academic and personal projects\n   - Skills: Technical and soft skills\n   - Certificates: Course and event certificates\n   - Publications: Research papers and articles\n5. Upload project files, images, and videos\n6. Customize design and layout\n7. Set portfolio visibility\n8. Share your unique portfolio URL\n9. Employers can view your portfolio\n10. Update regularly with new achievements",
+      "links": ["/career/portfolio"],
+      "followup": ["How do I share my portfolio?", "What should I include in my portfolio?"]
+    },
+    {
+      "id": "FAQ015",
+      "category": "career",
+      "keywords": ["job", "apply", "vacancy", "position"],
+      "question": "How do I find and apply for jobs?",
+      "answer": "To find and apply for jobs:\n1. Log in to your account\n2. Go to 'Career' > 'Job Board'\n3. Browse available job listings\n4. Filter by industry, location, or experience level\n5. Click on a job to view details\n6. Review requirements and responsibilities\n7. Click 'Apply Now'\n8. Upload your CV (required)\n9. Add a cover letter (optional)\n10. Submit your application\n11. Track application status in your dashboard\n12. You'll receive notifications for updates",
+      "links": ["/career/jobs", "/dashboard"],
+      "followup": ["How do I know if I'm shortlisted?", "Can I save jobs for later?"]
+    },
+    {
+      "id": "FAQ016",
+      "category": "career",
+      "keywords": ["resume", "builder", "CV", "create"],
+      "question": "How do I use the resume builder?",
+      "answer": "To use the resume builder:\n1. Log in to your account\n2. Go to 'Career' > 'Resume Builder'\n3. Choose a template (multiple designs available)\n4. Import your profile data automatically\n5. Add or edit sections:\n   - Personal Information\n   - Education\n   - Experience\n   - Skills\n   - Projects\n   - Certificates\n6. Use AI suggestions for content improvement\n7. Preview your resume in real-time\n8. Download as PDF\n9. Create multiple versions for different jobs\n10. Save and update anytime",
+      "links": ["/career/resume-builder"],
+      "followup": ["How do I get AI suggestions?", "Can I use my resume for multiple jobs?"]
+    },
+    {
+      "id": "FAQ017",
+      "category": "community",
+      "keywords": ["forum", "discuss", "question", "answer", "thread"],
+      "question": "How do I use the community forums?",
+      "answer": "To use the community forums:\n1. Log in to your account\n2. Go to 'Community' > 'Forums'\n3. Browse categories (General, Technical, Career, Events)\n4. Click on a category to view threads\n5. To ask a question: Click 'New Thread'\n6. Enter title and description\n7. Add relevant tags\n8. Submit your thread\n9. To answer: Click on a thread and reply\n10. Upvote helpful answers\n11. Mark the best answer\n12. Follow threads for updates\n13. Report inappropriate content to moderators",
+      "links": ["/community/forums"],
+      "followup": ["How do I report inappropriate content?", "What are community guidelines?"]
+    },
+    {
+      "id": "FAQ018",
+      "category": "community",
+      "keywords": ["guidelines", "rules", "code of conduct"],
+      "question": "What are the community guidelines?",
+      "answer": "Community guidelines:\n1. Be respectful to all members\n2. No spam or promotional content\n3. No harassment or hate speech\n4. No discrimination of any kind\n5. Report inappropriate content to moderators\n6. Post original content or give proper attribution\n7. Help others with their questions\n8. Stay on topic in discussions\n9. First violation: Warning\n10. Second violation: Temporary suspension\n11. Repeated violations: Permanent ban\n12. Moderators have final authority",
+      "links": ["/community/guidelines"],
+      "followup": ["How do I report a violation?", "What happens if I get banned?"]
+    },
+    {
+      "id": "FAQ019",
+      "category": "virtual-classroom",
+      "keywords": ["live", "class", "session", "video", "meet"],
+      "question": "How do I join a live class session?",
+      "answer": "To join a live class:\n1. Go to your Dashboard\n2. Navigate to 'My Classes'\n3. Look for upcoming live sessions\n4. Click 'Join Session'\n5. You'll be redirected to Google Meet or Zoom\n6. Join with your microphone and camera\n7. Participate in live chat and Q&A\n8. Access shared resources (files, PPT, videos)\n9. Sessions are recorded for later viewing\n10. Attendance is automatically tracked",
+      "links": ["/classes", "/dashboard"],
+      "followup": ["What if I miss a live session?", "Can I watch recordings?"]
+    },
+    {
+      "id": "FAQ020",
+      "category": "virtual-classroom",
+      "keywords": ["attendance", "record", "class", "mark"],
+      "question": "How is attendance tracked in virtual classes?",
+      "answer": "Attendance is tracked as follows:\n1. Automatic recording when you join live sessions\n2. QR code check-in for physical events\n3. Teachers can manually mark attendance\n4. Attendance reports available to teachers\n5. Students can view their attendance records\n6. 80% minimum attendance for certificate eligibility\n7. Attendance warnings for low attendance\n8. Attendance tracking for all sessions",
+      "links": ["/attendance", "/dashboard"],
+      "followup": ["How do I check my attendance?", "What if my attendance wasn't recorded?"]
+    },
+    {
+      "id": "FAQ021",
+      "category": "general",
+      "keywords": ["inquisitors", "society", "about", "mission"],
+      "question": "What is the Inquisitors Society?",
+      "answer": "The Inquisitors Society is a student-run society at the University of Engineering and Technology, Lahore. We are dedicated to:\n- Fostering technical excellence\n- Professional development\n- Community engagement\n- Organizing technical events and workshops\n- Conducting conferences and seminars\n- Facilitating competitions\n- Arranging industrial tours\n- Career development programs\n- Leadership activities\n- CSS and IELTS sessions\n- Mock interviews and weekly discussions",
+      "links": ["/about"],
+      "followup": ["How do I become a member?", "What events do you organize?"]
+    },
+    {
+      "id": "FAQ022",
+      "category": "membership",
+      "keywords": ["member", "join", "fee", "benefits"],
+      "question": "How do I become a member of Inquisitors Society?",
+      "answer": "To become a member:\n1. All UET Lahore students are eligible for free membership\n2. External members pay a nominal registration fee\n3. Register on the platform with your university email\n4. Complete your profile\n5. Membership is renewed annually\n6. Benefits include:\n   - Access to all courses\n   - Event participation\n   - Internship opportunities\n   - Community forums\n   - Career development tools\n   - Certificates and recognition\n7. Alumni members have limited access",
+      "links": ["/membership", "/register"],
+      "followup": ["How much does membership cost?", "What documents do I need?"]
+    },
+    {
+      "id": "FAQ023",
+      "category": "support",
+      "keywords": ["help", "support", "contact", "assistance"],
+      "question": "How do I contact support?",
+      "answer": "You can contact support through:\n1. Email: support@inquisitors.edu\n2. Live chat on the platform\n3. Visit the Help Center\n4. Phone: Available during office hours\n5. Submit a support ticket from your dashboard\n6. For urgent issues, use the emergency contact\n7. Response time: Within 24 hours\n8. For technical issues, provide screenshots\n9. Check FAQ section first for quick answers",
+      "links": ["/support", "/help-center"],
+      "followup": ["How long does support take?", "What information should I provide?"]
+    },
+    {
+      "id": "FAQ024",
+      "category": "payment",
+      "keywords": ["payment", "fee", "refund", "cancel"],
+      "question": "What payment methods are accepted?",
+      "answer": "We accept the following payment methods:\n1. Credit Cards (Visa, Mastercard)\n2. Debit Cards\n3. JazzCash\n4. EasyPaisa\n5. Bank Transfers\n6. All payments are processed securely\n7. Receipts are sent to your email\n8. Refund policy:\n   - Full refund if event/course is cancelled\n   - Partial refund for withdrawals (within 7 days)\n   - No refund after 7 days or after accessing content",
+      "links": ["/payment", "/refund-policy"],
+      "followup": ["How do I get a refund?", "What if the payment fails?"]
+    },
+    {
+      "id": "FAQ025",
+      "category": "technical",
+      "keywords": ["browser", "device", "requirements", "compatible"],
+      "question": "What are the technical requirements?",
+      "answer": "Technical requirements:\n1. Web Browsers:\n   - Chrome (latest)\n   - Firefox (latest)\n   - Safari (latest)\n   - Edge (latest)\n2. Operating Systems:\n   - Windows 10+\n   - macOS 10.15+\n   - Linux (Ubuntu 20.04+)\n3. Internet:\n   - Minimum 2 Mbps for 3D features\n   - 5 Mbps recommended for live sessions\n4. JavaScript must be enabled\n5. Modern browser with WebGL support for 3D\n6. Mobile responsive for all devices",
+      "links": ["/help/requirements"],
+      "followup": ["My browser isn't supported", "How do I enable JavaScript?"]
+    }
+  ],
+  "greetings": [
+    "Hello! How can I help you today?",
+    "Hi there! I'm the Inquisitors Society Assistant. Ask me anything!",
+    "Welcome to Inquisitors Society! What would you like to know?",
+    "Hey! I'm here to help you with courses, events, internships, and more."
+  ],
+  "fallbacks": [
+    "I don't have information about that yet. Please try rephrasing your question.",
+    "I'm not sure about that. Can you ask in a different way?",
+    "That's beyond my knowledge. For detailed help, please contact support.",
+    "I couldn't find an answer to that. Would you like to ask about courses, events, or internships instead?",
+    "I'm still learning! Please check our FAQ section or contact support."
+  ],
+  "out_of_scope": [
+    "I'm specifically designed to help with the Inquisitors Society platform. For general questions, please contact support.",
+    "That's outside my scope. I can help with platform-related questions about courses, events, internships, and career development.",
+    "I only handle questions about the Inquisitors Society platform. Please ask me something about the platform!"
+  ]
+}
