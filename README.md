@@ -36,7 +36,8 @@ The chatbot answers questions about **courses, events, internships, career devel
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/AmmazAhmed/ChatBot.git
+git clone https://github.com/AmmazAhmed/ChatBox
+
 cd ChatBot
 ```
 
@@ -45,17 +46,23 @@ cd ChatBot
 Open a terminal inside the **backend** folder:
 
 ```bash
-cd backend
-npm install
 ```
+## 3.Environment Setup
 
-If `dotenv` is not already included in `package.json`, install it using:
+Before running the backend:
 
-```bash
-npm install dotenv
-```
+1. Go to the `backend` folder.
+2. Create a `.env` file.
+3. Copy the variables from `.env.example`.
+4. Add your own OpenAI API key.
+5. Run `npm install`.
+6. Run `npm start`.
 
-### 3. Start the Backend
+Example:
+
+OPENAI_API_KEY=your_openai_api_key_here
+
+### 4. Start the Backend
 
 Run:
 
@@ -73,7 +80,7 @@ Make sure the backend server is running before using the chatbot.
 
 ---
 
-## Frontend Setup
+## 5.Frontend Setup
 
 ### Using VS Code Live Server
 
