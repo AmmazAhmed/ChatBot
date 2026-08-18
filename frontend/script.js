@@ -1,250 +1,164 @@
+// DOM Elements
+const chatWindow = document.getElementById('chatWindow');
+const chatBody = document.getElementById('chatBody');
+const userInput = document.getElementById('userInput');
+const typingIndicator = document.getElementById('typingIndicator');
+const notifBadge = document.getElementById('notifBadge');
+
+// Knowledge Base Responses
+const botKnowledge = {
+    courses: "📚 **Courses & Certificates**\nWe offer specialized tracks in Full-Stack Web Development, AI/ML Essentials, and Cloud Computing. You can earn verified certificates upon completing track projects!",
+    internships: "💼 **Internship Portal**\nWe partner with top technology firms! Applications for the upcoming Summer Engineering Track open soon. Keep your resume ready!",
+    events: "🎯 **Events & Workshops**\nOur next virtual Tech Talk on *Modern Web Architecture* is happening this Saturday at 5:00 PM. Registration is open to all members!",
+    certificates: "🏆 **Certificates Verification**\nYou can download or verify your issued certificates directly through your Inquisitors Student Dashboard using your unique Student ID.",
+    profile: "✏️ **Account & Profile**\nTo update your email, bio, or privacy settings, navigate to your Student Portal profile settings tab.",
+    default: "🤖 I'm here to assist with courses, internships, events, and certificates! Select one of the quick topics or ask a specific question."
+};
+
+// Initialize Chat
 document.addEventListener('DOMContentLoaded', () => {
-    const chatToggle = document.getElementById('chatToggle');
-    const chatWindow = document.getElementById('chatWindow');
-    const closeChat = document.getElementById('closeChat');
-    const clearChat = document.getElementById('clearChat');
-    const sendBtn = document.getElementById('sendBtn');
-    const userInput = document.getElementById('userInput');
-    const chatBody = document.getElementById('chatBody');
-
-    // Generate a session ID for this chat
-    const sessionId =
-        localStorage.getItem('inquisitorSessionId') ||
-        crypto.randomUUID();
-
-    localStorage.setItem('inquisitorSessionId', sessionId);
-
-    // 1. Toggle Chat Open/Close
-    chatToggle.addEventListener('click', () => {
-        chatWindow.classList.remove('hidden');
-        chatToggle.style.display = 'none';
-    });
-
-    closeChat.addEventListener('click', () => {
-        chatWindow.classList.add('hidden');
-        chatToggle.style.display = 'flex';
-    });
-
-    // 2. Clear Chat
-    clearChat.addEventListener('click', async () => {
-        chatBody.innerHTML = '';
-
-        // Clear backend conversation history
-        try {
-            await fetch(
-                `http://localhost:5000/api/chat/history/${sessionId}`,
-                {
-                    method: 'DELETE'
-                }
-            );
-        } catch (error) {
-            console.error('Could not clear server history:', error);
-        }
-
-        showInitialMessage();
-    });
-
-    // 3. Send Button
-    sendBtn.addEventListener('click', () => {
-        const text = userInput.value.trim();
-
-        if (text) {
-            sendMessage(text);
-        }
-    });
-
-    // 4. Enter Key
-    userInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-
-            const text = userInput.value.trim();
-
-            if (text) {
-                sendMessage(text);
-            }
-        }
-    });
-
-    // 5. Quick Message Buttons
-    window.sendQuickMessage = function (text) {
-        sendMessage(text);
-    };
-
-    // 6. Initial Chat Message
-    function showInitialMessage() {
-        const initialMsg = document.createElement('div');
-
-        initialMsg.className = 'message bot-msg';
-
-        initialMsg.innerHTML = `
-            👋 Hello! I'm the Inquisitors Society Assistant.<br><br>
-
-            I can help you with:<br><br>
-
-            <button class="quick-btn"
-                onclick="sendQuickMessage('Courses & Certificates')">
-                📚 Courses & Certificates
-            </button><br>
-
-            <button class="quick-btn"
-                onclick="sendQuickMessage('Internships')">
-                🎯 Internships
-            </button><br>
-
-            <button class="quick-btn"
-                onclick="sendQuickMessage('Events & Workshops')">
-                🏛️ Events & Workshops
-            </button><br>
-
-            <button class="quick-btn"
-                onclick="sendQuickMessage('Career Development')">
-                💼 Career Development
-            </button><br>
-
-            <button class="quick-btn"
-                onclick="sendQuickMessage('Community Forums')">
-                👥 Community Forums
-            </button><br>
-
-            <button class="quick-btn"
-                onclick="sendQuickMessage('Account & Registration')">
-                🔒 Account & Registration
-            </button><br><br>
-
-            What would you like to know?
-        `;
-
-        chatBody.appendChild(initialMsg);
-    }
-
-    // 7. Send Message to Backend
-    async function sendMessage(text) {
-        // Show user message
-        appendMessage(text, 'user-msg');
-
-        // Clear input
-        userInput.value = '';
-
-        // Disable input while waiting
-        userInput.disabled = true;
-        sendBtn.disabled = true;
-        sendBtn.textContent = '...';
-
-        try {
-            const response = await fetch(
-                'http://localhost:5000/api/chat',
-                {
-                    method: 'POST',
-
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-
-                    body: JSON.stringify({
-                        message: text,
-                        sessionId: sessionId,
-                        userId: 'guest'
-                    })
-                }
-            );
-
-            if (!response.ok) {
-                throw new Error(
-                    `Server error: ${response.status}`
-                );
-            }
-
-            const data = await response.json();
-
-            console.log('Backend response:', data);
-
-            // Display chatbot response
-            const botReply =
-                data.response ||
-                'Sorry, I could not generate a response.';
-
-            appendMessage(botReply, 'bot-msg');
-
-            // Display follow-up questions if available
-            if (
-                Array.isArray(data.followup) &&
-                data.followup.length > 0
-            ) {
-                appendFollowupButtons(data.followup);
-            }
-
-        } catch (error) {
-            console.error('Chat error:', error);
-
-            appendMessage(
-                '⚠️ Sorry, I couldn\'t connect to the chatbot server. Please make sure the backend is running on port 5000.',
-                'bot-msg'
-            );
-        } finally {
-            // Re-enable input
-            userInput.disabled = false;
-            sendBtn.disabled = false;
-            sendBtn.textContent = 'Send';
-
-            userInput.focus();
-        }
-    }
-
-    // 8. Display Message
-    function appendMessage(text, className) {
-        const msgDiv = document.createElement('div');
-
-        msgDiv.className = `message ${className}`;
-
-        msgDiv.innerHTML = escapeHTML(text)
-            .replace(/\n/g, '<br>');
-
-        chatBody.appendChild(msgDiv);
-
-        chatBody.scrollTop = chatBody.scrollHeight;
-    }
-
-    // 9. Display Follow-up Buttons
-    function appendFollowupButtons(followups) {
-        const container = document.createElement('div');
-
-        container.className = 'message bot-msg';
-
-        const title = document.createElement('div');
-
-        title.textContent = 'You can also ask:';
-
-        container.appendChild(title);
-
-        followups.forEach((question) => {
-            const button = document.createElement('button');
-
-            button.className = 'quick-btn';
-
-            button.textContent = question;
-
-            button.addEventListener('click', () => {
-                sendMessage(question);
-            });
-
-            container.appendChild(button);
-        });
-
-        chatBody.appendChild(container);
-
-        chatBody.scrollTop = chatBody.scrollHeight;
-    }
-
-    // 10. Prevent HTML injection
-    function escapeHTML(text) {
-        const div = document.createElement('div');
-
-        div.textContent = text;
-
-        return div.innerHTML;
-    }
-
-    // Show initial message when page loads
-    showInitialMessage();
+    sendBotInitialGreeting();
 });
+
+// Markdown Parser Helper
+function parseMarkdown(text) {
+    let formatted = text;
+    // Bold parsing (**text**)
+    formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    // Italic parsing (*text*)
+    formatted = formatted.replace(/\*(.*?)\*/g, '<em>$1</em>');
+    // Bullet points parsing (- or •)
+    formatted = formatted.replace(/(?:^|\n)[•\-]\s?(.*?)(?=\n|$)/g, '<li>$1</li>');
+    if (formatted.includes('<li>')) {
+        formatted = formatted.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+    }
+    // Line breaks
+    formatted = formatted.replace(/\n/g, '<br>');
+    return formatted;
+}
+
+// Toggle Chat Visibility
+function toggleChat() {
+    chatWindow.classList.toggle('hidden');
+    if (!chatWindow.classList.contains('hidden')) {
+        if (notifBadge) notifBadge.style.display = 'none';
+        userInput.focus();
+    }
+}
+
+function openChat() {
+    chatWindow.classList.remove('hidden');
+    if (notifBadge) notifBadge.style.display = 'none';
+    userInput.focus();
+}
+
+// Get Time String
+function getCurrentTime() {
+    const now = new Date();
+    return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}
+
+// Send Initial Welcome Message
+function sendBotInitialGreeting() {
+    const welcomeText = "🤖 Hello! I'm the **Inquisitors Assistant**.\n\nHow can I help you today?";
+    appendMessage(welcomeText, 'bot');
+
+    // Add Interactive Quick Action Buttons
+    const optionsDiv = document.createElement('div');
+    optionsDiv.className = 'quick-options';
+    optionsDiv.innerHTML = `
+        <button class="quick-opt-btn" onclick="handleQuickSelect('Courses')">📚 Courses & Certificates</button>
+        <button class="quick-opt-btn" onclick="handleQuickSelect('Internships')">💼 Internships</button>
+        <button class="quick-opt-btn" onclick="handleQuickSelect('Events')">🎯 Events & Workshops</button>
+        <button class="quick-opt-btn" onclick="handleQuickSelect('Profile')">✏️ Profile & Settings</button>
+    `;
+    chatBody.appendChild(optionsDiv);
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// Append Message Bubble
+function appendMessage(text, sender) {
+    const msgDiv = document.createElement('div');
+    msgDiv.classList.add('message', sender === 'user' ? 'user-msg' : 'bot-msg');
+    
+    const parsedText = parseMarkdown(text);
+    const timeSpan = `<span class="msg-time">${getCurrentTime()}</span>`;
+    
+    msgDiv.innerHTML = parsedText + timeSpan;
+    chatBody.appendChild(msgDiv);
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// Handle User Input
+function sendMessage() {
+    const text = userInput.value.trim();
+    if (!text) return;
+
+    appendMessage(text, 'user');
+    userInput.value = '';
+
+    showTypingIndicator();
+
+    setTimeout(() => {
+        hideTypingIndicator();
+        processBotReply(text);
+    }, 800);
+}
+
+function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+}
+
+// Quick Select Handler
+function handleQuickSelect(category) {
+    openChat();
+    appendMessage(category, 'user');
+    showTypingIndicator();
+
+    setTimeout(() => {
+        hideTypingIndicator();
+        const key = category.toLowerCase();
+        const response = botKnowledge[key] || botKnowledge.default;
+        appendMessage(response, 'bot');
+    }, 600);
+}
+
+// Process Bot Logic
+function processBotReply(query) {
+    const lower = query.toLowerCase();
+    let reply = botKnowledge.default;
+
+    if (lower.includes('course') || lower.includes('class') || lower.includes('learn')) {
+        reply = botKnowledge.courses;
+    } else if (lower.includes('intern') || lower.includes('job') || lower.includes('work')) {
+        reply = botKnowledge.internships;
+    } else if (lower.includes('event') || lower.includes('workshop') || lower.includes('meetup')) {
+        reply = botKnowledge.events;
+    } else if (lower.includes('certif') || lower.includes('verify')) {
+        reply = botKnowledge.certificates;
+    } else if (lower.includes('profile') || lower.includes('account') || lower.includes('setting')) {
+        reply = botKnowledge.profile;
+    } else if (lower.includes('hi') || lower.includes('hello') || lower.includes('hey')) {
+        reply = "👋 Hello there! What topic would you like assistance with today?";
+    }
+
+    appendMessage(reply, 'bot');
+}
+
+// Indicator Logic
+function showTypingIndicator() {
+    typingIndicator.classList.remove('hidden');
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function hideTypingIndicator() {
+    typingIndicator.classList.add('hidden');
+}
+
+// Clear Chat Function
+function clearChat() {
+    chatBody.innerHTML = '';
+    sendBotInitialGreeting();
+}
