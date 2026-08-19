@@ -3,64 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inquisitors Society Assistant</title>
+    <title>Inquisitors Society | Intelligent Student Portal</title>
+    <!-- Premium Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- MAIN LANDING PAGE -->
-    <div id="app">
-        <div class="landing-container">
-            <img src="inquisitors-logo.png" alt="Inquisitors Logo" class="main-logo">
-            <h1>Welcome to the Inquisitors Society</h1>
-            <p>Your intelligent assistant is here to help. Click the chat icon below.</p>
-        </div>
+    <!-- BACKGROUND GRADIENT BLOB DECORATIONS -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
 
-        <!-- CHAT TOGGLE BUTTON -->
+    <div id="app">
+        <!-- HEADER / NAVIGATION -->
+        <header class="app-header">
+            <div class="header-container">
+                <div class="brand">
+                    <img src="inquisitors-logo.png" alt="Inquisitors Logo" class="brand-logo">
+                    <div class="brand-text-simple">INQUISITORS</div>
+                </div>
+                
+                <!-- Social Connections Section -->
+                <div class="social-header-links">
+                    <!-- Light/Dark Mode Toggle -->
+                    <button id="themeToggle" class="social-header-btn theme-toggle-btn" title="Toggle Light/Dark Theme">
+                        <svg class="sun-icon icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        <svg class="moon-icon icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    </button>
+                    <a href="https://www.instagram.com/inquisitorssociety?igsh=aDk4NG0wdzgxcXZm&igsi=aDk4NG0wdzgxcXZm" target="_blank" class="social-header-btn instagram-btn" title="Instagram">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://www.facebook.com/share/1GNxZLwLbF/?mibextid=wwXIfr" target="_blank" class="social-header-btn facebook-btn" title="Facebook">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/inquisitors-society-167155381?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" class="social-header-btn linkedin-btn" title="LinkedIn">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN LAYOUT -->
+        <main class="main-content">
+            <!-- HERO SECTION -->
+            <section class="hero-section">
+                <div class="hero-badge-simple"><span class="dot-orange"></span> Powered by AI Assistant</div>
+                <h1 class="hero-title">Empowering Minds,<br><span class="gradient-teal">Unlocking Potential.</span></h1>
+                <p class="hero-subtitle">Welcome to the official Inquisitors Society portal. Discover courses, land prestigious internships, and navigate your academic journey with our instant AI assistant.</p>
+                <div class="hero-actions">
+                    <button class="primary-btn-teal" id="activateChatBtn">Chat with Assistant &rarr;</button>
+                    <button class="secondary-btn-simple" id="startExploringBtn">Explore Features</button>
+                </div>
+            </section>
+
+            <!-- TRACKS / SECTIONS GRID -->
+            <section class="tracks-section" id="tracksSection">
+                <div class="section-header">
+                    <h2>Our Key Pillars</h2>
+                    <p>Discover our core pathways designed to support students, mentors, and partners.</p>
+                </div>
+                <div class="tracks-grid">
+                    <!-- Card 1 -->
+                    <div class="track-card">
+                        <div class="track-icon">📚</div>
+                        <h3>Courses & Certs</h3>
+                        <p>Advance your skillset with certified tracks, from computer science fundamentals to CSS/IELTS prep.</p>
+                        <button class="card-btn" onclick="sendQuickMessage('Tell me about courses')">Learn More &rarr;</button>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="track-card">
+                        <div class="track-icon">🎯</div>
+                        <h3>Internship Hub</h3>
+                        <p>Secure premium internship opportunities with real companies and projects across the country.</p>
+                        <button class="card-btn" onclick="sendQuickMessage('Tell me about internships')">Browse Openings &rarr;</button>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="track-card">
+                        <div class="track-icon">🏛️</div>
+                        <h3>Events & Workshops</h3>
+                        <p>Join weekly seminars, workshops, hackathons, and mock interviews organized at UET Lahore.</p>
+                        <button class="card-btn" onclick="sendQuickMessage('What events are coming up?')">See Events &rarr;</button>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="track-card">
+                        <div class="track-icon">💼</div>
+                        <h3>Career Planning</h3>
+                        <p>Prepare with our resume builders, personalized career advice, portfolio showcases, and guides.</p>
+                        <button class="card-btn" onclick="sendQuickMessage('Career Development support')">Explore Tools &rarr;</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- FLOATING CHAT WIDGET TRIGGER -->
         <button id="chatToggle" class="chat-toggle">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-            </svg>
-            <span>Chat</span>
+            <div class="chat-toggle-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+            </div>
+            <span>Ask Inquisitor AI</span>
         </button>
     </div>
 
-    <!-- CHAT WINDOW -->
+    <!-- PREMIUM CHAT WINDOW -->
     <div id="chatWindow" class="chat-window hidden">
         <div class="chat-header">
             <div class="header-info">
                 <img src="inquisitors-logo.png" alt="Logo" class="header-logo">
                 <div>
-                    <h3>Inquisitors Assistant</h3>
-                    <span class="online-status">● Online</span>
+                    <h3>Inquisitors AI</h3>
+                    <span class="online-status"><span class="pulse-dot"></span>Online</span>
                 </div>
             </div>
             <div class="header-controls">
-                <button id="clearChat" class="icon-btn" title="Clear Chat">🗑️</button>
-                <button id="closeChat" class="icon-btn" title="Close">✕</button>
+                <button id="clearChat" class="icon-btn" title="Clear Chat">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                </button>
+                <button id="closeChat" class="icon-btn" title="Close">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
             </div>
         </div>
         
-        <div class="chat-body" id="chatBody">
-            <!-- Initial Bot Message with Clickable Buttons -->
-            <div class="message bot-msg">
-                👋 Hello! I'm the Inquisitors Society Assistant.<br>
-                I can help you with:<br><br>
-                <button class="quick-btn" onclick="sendQuickMessage('Courses & Certificates')">📚 Courses & Certificates</button><br>
-                <button class="quick-btn" onclick="sendQuickMessage('Internships')">🎯 Internships</button><br>
-                <button class="quick-btn" onclick="sendQuickMessage('Events & Workshops')">🏛️ Events & Workshops</button><br>
-                <button class="quick-btn" onclick="sendQuickMessage('Career Development')">💼 Career Development</button><br>
-                <button class="quick-btn" onclick="sendQuickMessage('Community Forums')">👥 Community Forums</button><br>
-                <button class="quick-btn" onclick="sendQuickMessage('Account & Registration')">🔒 Account & Registration</button><br><br>
-                What would you like to know?
-            </div>
+        <!-- Chat Body with custom scrollbar -->
+        <div class="chat-body" id="chatBody"></div>
+
+        <!-- Inline typing status indicators -->
+        <div class="typing-indicator hidden" id="typingIndicator">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
         </div>
 
+        <!-- Chat Input Footer -->
         <div class="chat-footer">
-            <input type="text" id="userInput" placeholder="Type a message..." />
-            <button id="sendBtn">Send</button>
+            <input type="text" id="userInput" placeholder="Ask about courses, events, internships..." autocomplete="off">
+            <button id="sendBtn" class="send-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
         </div>
     </div>
+
+    <!-- DETAIL MODAL OVERLAY -->
+    <div id="detailsModal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modalTitle">Details</h3>
+                <button id="closeModal" class="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="app-footer">
+        <p>&copy; 2026 Inquisitors Society. Designed for high performance learning.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
