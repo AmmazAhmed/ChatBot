@@ -1,52 +1,48 @@
-# Inquisitors Society Chatbot
+# Inquisitors Society Portal & Chatbot
 
-An intelligent, AI-powered chatbot designed to assist students, teachers, mentors, and companies with information about the **Inquisitors Society** platform.
+An intelligent, AI-powered student portal and chatbot designed to assist students, teachers, mentors, and partners with information about the **Inquisitors Society** platform at UET Lahore.
 
-The chatbot answers questions about **courses, events, internships, career development, and account management** using a hybrid approach: a local knowledge base combined with **OpenAI's GPT-3.5**.
-
----
-
-## Features
-
-- **Natural Language Interaction** – Ask questions in plain English.
-- **Hybrid Response System** – First checks a curated FAQ knowledge base, then falls back to AI for deeper understanding.
-- **Smart Follow-up Suggestions** – Automatically recommends related questions after each answer.
-- **Session Persistence** – Maintains conversation history for each user session using a unique session ID.
-- **Quick Reply Buttons** – Provides one-click access to common topics such as Courses, Internships, Events, and Career Development.
-- **Responsive UI** – Clean and modern chat interface that works on desktop and mobile devices.
-- **Health Check & Logging** – Includes an API health endpoint and chat logging for monitoring and debugging.
+The chatbot answers questions about **courses, events, internships, and career development** using a hybrid approach: a local knowledge base combined with a locally hosted LLM via **Ollama**.
 
 ---
 
+## Key Features
+
+- **Double-Mode Premium UI** – Sleek, fully responsive design with dynamic **Dark Mode** and **Light Mode** options.
+- **Interactive Detail Modals** – Click on any portal pillar (Courses, Internships, Events, Career) to view lists of current opportunities in a glassmorphic overlay.
+- **One-Command Auto Start** – The backend server automatically hosts the static frontend files, starts your local Ollama model in the background, and opens your default web browser to the portal page.
+- **Hybrid AI Engine** – Instantly answers common questions via a fast local FAQ knowledge base, falling back to local Ollama AI for complex queries.
+- **Direct Social Shortcuts** – Brand-themed direct access buttons for the society's **LinkedIn**, **Facebook**, and **Instagram** handles.
+
+---
 ## Tech Stack
 
 | Component | Technology |
 |---|---|
 | Frontend | HTML5, CSS3, Vanilla JavaScript |
 | Backend | Node.js, Express.js |
-| AI Engine | OpenAI API (GPT-3.5-turbo) |
+| AI Engine | OpenAI API [ollama] |
 | Data Storage | In-memory Map + JSON files |
 | Development Tools | Nodemon, dotenv, CORS |
 
 ---
 
-
-## How to Run the Project
+## Setup and Running
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/AmmazAhmed/ChatBox
-
-cd ChatBot
+git clone https://github.com/AmmazAhmed/ChatBot
 ```
 
-### 2. Backend Setup
+### 2. Download and Run Ollama
+If you don't have Ollama installed, download it from [ollama.com](https://ollama.com). 
 
-Open a terminal inside the **backend** folder:
-
+Before launching the app, run the following commands in your Command Prompt/terminal to pull the ultra-lightweight AI model:
 ```bash
+ollama pull qwen2.5:0.5b
 ```
+
 ## 3.Environment Setup
 
 Before running the backend:
@@ -55,42 +51,19 @@ Before running the backend:
 2. Create a `.env` file.
 3. Copy the variables from `.env.example`.
 4. Add your own OpenAI API key.
-5. Run `npm install`.
-6. Run `npm start`.
 
-Example:
 
-OPENAI_API_KEY=your_openai_api_key_here
-
-### 4. Start the Backend
-
-Run:
-
+### 4. Startup Command
 ```bash
+cd backend
+npm install
 npm start
 ```
 
-If the project uses Nodemon, you can also run:
-
-```bash
-npm run dev
-```
-
-Make sure the backend server is running before using the chatbot.
-
----
-
-## 5.Frontend Setup
-
-### Using VS Code Live Server
-
-1. Open the **frontend** folder in VS Code.
-2. Open `index.html`.
-3. Right-click on `index.html`.
-4. Select **Open with Live Server**.
-5. The chatbot interface will open in your default browser.
-
-> **Important:** Make sure the backend server is already running before starting a chat.
+### What happens when you run `npm start`?
+- The backend server boots up on port `5000`.
+- The system automatically triggers `ollama run qwen2.5:0.5b` in the background (no need to open a separate terminal!).
+- Your default web browser will **automatically open** to the student portal at `http://localhost:5000/`.
 
 ---
 
@@ -110,7 +83,7 @@ Search local FAQ / Knowledge Base
    └───────┬───────┘
        Yes │ No
            ↓
-   Local Answer       OpenAI GPT-3.5
+   Local Answer       OpenAI (ollama)
            │                │
            └───────┬────────┘
                    ↓
@@ -120,21 +93,3 @@ Search local FAQ / Knowledge Base
 ```
 
 This approach allows the chatbot to provide fast answers to common questions while using AI for questions that require deeper understanding.
-
----
-
-## Main Topics Supported
-
-The chatbot can provide information related to:
-
-- 📚 Courses
-- 💼 Internships
-- 🎯 Career Development
-- 📅 Events
-- 👨‍🏫 Mentors
-- 👨‍🎓 Students
-- 🏢 Companies
-- 🔐 Account Management
-- ❓ Frequently Asked Questions
-
----
