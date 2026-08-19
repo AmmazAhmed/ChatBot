@@ -18,6 +18,9 @@ app.use(cors());
 
 app.use(express.json());
 
+// Serve static frontend files
+app.use(express.static(path.join(__dirname, '../frontend')));
+
 
 // ===============================
 // Load Knowledge Base
@@ -34,12 +37,19 @@ const knowledgeBase = JSON.parse(
 
 
 // ===============================
-// OpenAI Configuration
+// AI Engine Configuration
 // ===============================
 
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
-});
+const LLM_PROVIDER = process.env.LLM_PROVIDER || 'ollama';
+const OLLAMA_HOST = process.env.OLLAMA_HOST || 'http://127.0.0.1:11434';
+const OLLAMA_MODEL = process.env.OLLAMA_MODEL || 'qwen2.5:0.5b';
+
+let openai = null;
+if (process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY !== 'your_openai_api_key_here' && process.env.OPENAI_API_KEY !== 'your_actual_openai_api_key_here') {
+    openai = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY
+    });
+}
 
 
 // ===============================
@@ -159,62 +169,92 @@ You are the Inquisitors Society Assistant.
 Your job is to help users with information about
 the Inquisitors Society platform.
 
-Use the provided knowledge base to answer questions.
-
-If the answer is not available in the knowledge base,
-do not invent information.
-
-Knowledge Base:
-
+Here is the context from our FAQ Knowledge Base:
 ${faqContext}
 
 Rules:
-
-1. Be helpful and friendly.
-2. Give accurate information.
-3. Keep answers concise and clear.
-4. Do not invent information.
-5. Stay within Inquisitors Society topics.
-6. If the question is outside the platform scope,
-   politely tell the user.
-7. Suggest follow-up questions when useful.
+1. Be helpful, friendly, and conversational.
+2. If the user greets you or asks if you are working, reply politely.
+3. Use the knowledge base to answer questions about the Inquisitors Society.
+4. If a question is about the Inquisitors Society but the exact answer is not in the knowledge base, use your intelligence to provide a helpful, reasonable answer.
+5. If the question is completely unrelated to the Inquisitors Society, briefly answer it politely and guide the user back to platform topics.
+6. Suggest follow-up questions when useful.
 
 Additional context:
-
 ${context}
 `;
 
-
-        const response =
-            await openai.chat.completions.create({
-
-                model: 'gpt-3.5-turbo',
-
-                messages: [
-
-                    {
-                        role: 'system',
-                        content: systemPrompt
-                    },
-
-                    {
-                        role: 'user',
-                        content: query
-                    }
-
-                ],
-
-                temperature: 0.7,
-
-                max_tokens: 500
+        if (LLM_PROVIDER === 'ollama') {
+            const cleanedHost = OLLAMA_HOST.replace(/\/$/, "");
+            const targetUrl = `${cleanedHost}/api/chat`;
+            console.log(`Calling Ollama model '${OLLAMA_MODEL}' at ${targetUrl}...`);
+            
+            const response = await fetch(targetUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    model: OLLAMA_MODEL,
+                    messages: [
+                        {
+                            role: 'system',
+                            content: systemPrompt
+                        },
+                        {
+                            role: 'user',
+                            content: query
+                        }
+                    ],
+                    stream: false
+                })
             });
 
+            if (!response.ok) {
+                console.log(`Ollama API error response status: ${response.status}`);
+                throw new Error(`Ollama responded with status: ${response.status}`);
+            }
 
-        return response
-            .choices[0]
-            .message
-            .content;
+            const data = await response.json();
+            if (data && data.message && data.message.content) {
+                return data.message.content;
+            } else {
+                throw new Error('Invalid response structure from Ollama');
+            }
+        } else {
+            if (!openai) {
+                throw new Error('OpenAI key is not configured.');
+            }
+            console.log('Calling OpenAI GPT-3.5-turbo...');
+            const response =
+                await openai.chat.completions.create({
 
+                    model: 'gpt-3.5-turbo',
+
+                    messages: [
+
+                        {
+                            role: 'system',
+                            content: systemPrompt
+                        },
+
+                        {
+                            role: 'user',
+                            content: query
+                        }
+
+                    ],
+
+                    temperature: 0.7,
+
+                    max_tokens: 500
+                });
+
+            return response
+                .choices[0]
+                .message
+                .content;
+        }
 
     } catch (error) {
 
@@ -644,6 +684,7 @@ app.get(
 
 app.listen(
     PORT,
+    '0.0.0.0',
     () => {
 
         console.log(
@@ -653,6 +694,63 @@ app.listen(
         console.log(
             `Knowledge base loaded: ${knowledgeBase.faqs.length} FAQs`
         );
+
+        // Check if model exists in Ollama and auto-pull if missing
+        console.log(`Checking if Ollama model 'qwen2.5:0.5b' is installed...`);
+        const { exec } = require('child_process');
+        const http = require('http');
+        
+        const checkRequest = http.get('http://127.0.0.1:11434/api/tags', (res) => {
+            let data = '';
+            res.on('data', chunk => data += chunk);
+            res.on('end', () => {
+                try {
+                    const result = JSON.parse(data);
+                    const models = result.models || [];
+                    const hasModel = models.some(m => m.name.includes('qwen2.5:0.5b'));
+                    
+                    if (!hasModel) {
+                        console.log("Model 'qwen2.5:0.5b' not found. Automatically pulling the model, this may take a moment...");
+                        exec('ollama pull qwen2.5:0.5b', (pullErr) => {
+                            if (pullErr) {
+                                console.log('Failed to automatically pull model. Please run "ollama pull qwen2.5:0.5b" manually.');
+                            } else {
+                                console.log("Model 'qwen2.5:0.5b' pulled successfully! Launching...");
+                                exec('ollama run qwen2.5:0.5b');
+                            }
+                        });
+                    } else {
+                        console.log("Model 'qwen2.5:0.5b' is already installed. Starting model in background...");
+                        exec('ollama run qwen2.5:0.5b');
+                    }
+                } catch (err) {
+                    console.log('Error parsing local Ollama tags. Starting model fallback...');
+                    exec('ollama run qwen2.5:0.5b');
+                }
+            });
+        });
+
+        checkRequest.on('error', () => {
+            console.log('Ollama is not currently running. Attempting to start Ollama with model qwen2.5:0.5b...');
+            exec('start ollama run qwen2.5:0.5b', (err) => {
+                if (err) {
+                    console.log('Could not start Ollama. Please ensure Ollama is installed and running.');
+                }
+            });
+        });
+
+        // Auto-open browser
+        const startUrl = `http://localhost:${PORT}`;
+        const startCmd = process.platform === 'win32'
+            ? `start ${startUrl}`
+            : process.platform === 'darwin'
+                ? `open ${startUrl}`
+                : `xdg-open ${startUrl}`;
+
+        setTimeout(() => {
+            console.log(`Opening default browser to ${startUrl}...`);
+            exec(startCmd);
+        }, 1500);
 
     }
 );
